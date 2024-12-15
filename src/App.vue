@@ -22,30 +22,27 @@ console.log(characters);
 </script>
 
 <template>
-  <div>
-    <h1>Rick and Morty</h1>
-    <h2>characters</h2>
-    <p v-if="loading">Loading...</p>
-    <p v-if="error" class="error">{{ error }}</p>
-    <div class="cards-container">
-      <Card
-        v-for="character in characters"
-        :key="character.id"
-        :name="character.name"
-        :status="character.status"
-        :gender="character.gender"
-        :image="character.image"
-      />
-    </div>
+  <h1>Rick and Morty</h1>
+  <p v-if="loading">Loading...</p>
+  <p v-if="error" class="error">{{ error }}</p>
+  <div class="cards-container">
+    <Card
+      v-for="character in characters"
+      :key="character.id"
+      :name="character.name"
+      :status="character.status"
+      :gender="character.gender"
+      :img="character.image"
+    />
   </div>
 </template>
 
 <style lang="scss">
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  padding: 16px;
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .error {

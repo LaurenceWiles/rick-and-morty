@@ -3,8 +3,8 @@
     <img :src="img" :alt="`${name} picture`" class="character-card__image" />
     <div class="character-card__details">
       <h3 class="character-card__name">{{ name }}</h3>
-      <p class="character-card__status">{{ status }}</p>
-      <p class="character-card__gender">{{ gender }}</p>
+      <p class="character-card__status">Status: {{ status }}</p>
+      <p class="character-card__gender">Gender: {{ gender }}</p>
     </div>
   </div>
 </template>
@@ -33,18 +33,17 @@ defineProps({
 <style lang="scss">
 .character-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 1rem;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 200px;
   text-align: center;
 
   &__image {
-    width: 100%;
+    width: 50%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
@@ -52,6 +51,7 @@ defineProps({
 
   &__details {
     margin-top: 1rem;
+    width: 50%;
   }
 
   &__name {
