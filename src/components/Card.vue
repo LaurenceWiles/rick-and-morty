@@ -13,19 +13,19 @@
 defineProps({
   img: {
     type: String,
-    Required: true,
+    required: true,
   },
   name: {
     type: String,
-    Required: true,
+    required: true,
   },
   status: {
     type: String,
-    Required: true,
+    required: true,
   },
   gender: {
     type: String,
-    Required: true,
+    required: true,
   },
 });
 </script>
@@ -41,6 +41,7 @@ defineProps({
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  max-width: 400px;
 
   &__image {
     width: 50%;
@@ -63,6 +64,21 @@ defineProps({
   &__gender {
     font-size: 0.9rem;
     color: #555;
+  }
+}
+
+@media (max-width: 426px) {
+  .character-card {
+    flex-direction: column;
+
+    &__image {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    &__details {
+      width: 100%;
+    }
   }
 }
 </style>

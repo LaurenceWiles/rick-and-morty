@@ -43,6 +43,7 @@ console.log(characters);
   max-width: 100%;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 .error {
