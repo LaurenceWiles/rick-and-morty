@@ -17,8 +17,6 @@ onMounted(async () => {
     loading.value = false;
   }
 });
-
-console.log(characters);
 </script>
 
 <template>

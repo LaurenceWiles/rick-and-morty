@@ -37,7 +37,7 @@ defineProps({
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -46,7 +46,7 @@ defineProps({
   &__image {
     width: 50%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px;
     object-fit: cover;
   }
 
@@ -74,6 +74,7 @@ defineProps({
     &__image {
       width: 100%;
       margin-bottom: 1rem;
+      border-radius: 8px 8px 0 0;
     }
 
     &__details {
