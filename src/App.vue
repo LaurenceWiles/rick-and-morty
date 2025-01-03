@@ -1,3 +1,19 @@
+<template>
+  <h1>Rick and Morty</h1>
+  <p v-if="loading">Loading...</p>
+  <p v-if="error" class="error">{{ error }}</p>
+  <div class="cards-container">
+    <Card
+      v-for="character in characters"
+      :key="character.id"
+      :name="character.name"
+      :status="character.status"
+      :gender="character.gender"
+      :img="character.image"
+    />
+  </div>
+</template>
+
 <script setup>
 import { ref, onMounted } from "vue";
 import Card from "./components/Card.vue";
@@ -18,22 +34,6 @@ onMounted(async () => {
   }
 });
 </script>
-
-<template>
-  <h1>Rick and Morty</h1>
-  <p v-if="loading">Loading...</p>
-  <p v-if="error" class="error">{{ error }}</p>
-  <div class="cards-container">
-    <Card
-      v-for="character in characters"
-      :key="character.id"
-      :name="character.name"
-      :status="character.status"
-      :gender="character.gender"
-      :img="character.image"
-    />
-  </div>
-</template>
 
 <style lang="scss">
 .cards-container {
