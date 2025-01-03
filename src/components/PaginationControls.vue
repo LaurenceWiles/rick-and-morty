@@ -6,7 +6,7 @@
     >
       Previous
     </button>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <span>Page {{ currentPage }}</span>
     <button
       @click="$emit('change-page', currentPage + 1)"
       :disabled="currentPage === totalPages"
