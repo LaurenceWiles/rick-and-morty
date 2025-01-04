@@ -38,7 +38,7 @@ defineProps({
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0;
-  background-color: #f9f9f9;
+  background-color: #eaeaea;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;

@@ -75,4 +75,10 @@ const changePage = (page) => {
   color: red;
   font-weight: bold;
 }
+
+@media (max-width: 426px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
 </style>
