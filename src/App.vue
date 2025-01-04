@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Rick and Morty</h1>
+    <ActionBar />
     <p v-if="loading">Loading...</p>
     <p v-if="error" class="error">{{ error }}</p>
     <div class="cards-container">
@@ -25,6 +26,7 @@
 import { ref, onMounted, computed } from "vue";
 import Card from "./components/Card.vue";
 import PaginationControls from "./components/PaginationControls.vue";
+import ActionBar from "./components/ActionBar.vue";
 
 const characters = ref([]);
 const loading = ref(true);
