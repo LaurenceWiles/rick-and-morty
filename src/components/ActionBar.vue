@@ -27,6 +27,7 @@
   padding: 1rem;
   background-color: #eaeaea;
   border-bottom: 1px solid #ccc;
+  gap: 1rem;
 
   &__search input {
     padding: 0.5rem;
@@ -50,6 +51,26 @@
 
     &:hover {
       background-color: #0056b3;
+    }
+  }
+
+  @media (max-width: 426px) {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__search,
+    &__sort,
+    &__favorites {
+      flex: 1 1 100%;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    &__search input,
+    &__sort select,
+    &__favorites button {
+      width: 90%;
+      max-width: 300px;
     }
   }
 }
