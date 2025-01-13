@@ -4,17 +4,27 @@
     <ActionBar
       v-model:searchTerm="searchTerm"
       v-model:sortOption="sortOption"
+      :favorites="favorites"
+      @open-favorites="openFavorites"
     />
     <p v-if="loading">Loading...</p>
     <p v-if="error" class="error">{{ error }}</p>
+    <FavoritesModal
+      :favorites="favorites"
+      :isOpen="isFavoritesModalOpen"
+      @close="isFavoritesModalOpen = false"
+    />
     <div class="cards-container">
       <Card
         v-for="character in paginatedCharacters"
         :key="character.id"
+        :id="character.id"
         :name="character.name"
         :status="character.status"
         :gender="character.gender"
         :img="character.image"
+        :isFavorite="isFavorite(character.id)"
+        @toggle-favorite="toggleFavorite"
       />
     </div>
     <PaginationControls
@@ -30,6 +40,7 @@ import { ref, onMounted, computed } from "vue";
 import Card from "./components/Card.vue";
 import PaginationControls from "./components/PaginationControls.vue";
 import ActionBar from "./components/ActionBar.vue";
+import FavoritesModal from "./components/FavoritesModal.vue";
 
 const characters = ref([]);
 const loading = ref(true);
@@ -37,6 +48,8 @@ const error = ref(null);
 
 const searchTerm = ref("");
 const sortOption = ref("");
+const favorites = ref([]);
+const isFavoritesModalOpen = ref(false);
 
 const currentPage = ref(1);
 const itemsPerPage = 5;
@@ -52,6 +65,18 @@ onMounted(async () => {
     loading.value = false;
   }
 });
+
+const toggleFavorite = (character) => {
+  const index = favorites.value.findIndex((fav) => fav.id === character.id);
+  if (index !== -1) {
+    favorites.value.splice(index, 1);
+  } else {
+    favorites.value.push(character);
+  }
+};
+
+const isFavorite = (id) =>
+  favorites.value.some((character) => character.id === id);
 
 const filteredCharacters = computed(() => {
   let result = characters.value;
@@ -85,6 +110,10 @@ const changePage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
   }
+};
+
+const openFavorites = () => {
+  isFavoritesModalOpen.value = true;
 };
 </script>
 

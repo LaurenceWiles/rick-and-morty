@@ -5,12 +5,22 @@
       <h3 class="character-card__name">{{ name }}</h3>
       <p class="character-card__status">Status: {{ status }}</p>
       <p class="character-card__gender">Gender: {{ gender }}</p>
+      <button
+        class="character-card__favorite-button"
+        @click="$emit('toggle-favorite', { id, name, img })"
+      >
+        {{ isFavorite ? "Remove from Favorites" : "Add to Favorites" }}
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
 defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   img: {
     type: String,
     required: true,
@@ -27,7 +37,13 @@ defineProps({
     type: String,
     required: true,
   },
+  isFavorite: {
+    type: Boolean,
+    required: true,
+  },
 });
+
+defineEmits(["toggle-favorite"]);
 </script>
 
 <style lang="scss">
@@ -45,13 +61,14 @@ defineProps({
 
   &__image {
     width: 50%;
-    height: -webkit-fill-available;
+    height: 100%;
     border-radius: 8px 0 0 8px;
     object-fit: cover;
   }
 
   &__details {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 50%;
   }
 
@@ -64,6 +81,20 @@ defineProps({
   &__gender {
     font-size: 0.9rem;
     color: #555;
+  }
+
+  &__favorite-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #007bff;
+      color: white;
+    }
   }
 }
 

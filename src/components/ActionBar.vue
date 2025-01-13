@@ -8,9 +8,12 @@
       :sortOption="sortOption"
       @update:sortOption="(value) => $emit('update:sortOption', value)"
     />
-    <div class="action-bar__favorites">
-      <button>View Favorites</button>
-    </div>
+    <button
+      class="action-bar__favorites-button"
+      @click="$emit('open-favorites')"
+    >
+      View Favorites
+    </button>
   </div>
 </template>
 
@@ -19,7 +22,7 @@ import SearchBar from "./SearchBar.vue";
 import SortControls from "./SortControls.vue";
 
 defineProps(["searchTerm", "sortOption"]);
-defineEmits(["update:searchTerm", "update:sortOption"]);
+defineEmits(["update:searchTerm", "update:sortOption", "open-favorites"]);
 </script>
 
 <style lang="scss" scoped>
@@ -44,16 +47,17 @@ defineEmits(["update:searchTerm", "update:sortOption"]);
     border-radius: 4px;
   }
 
-  &__favorites button {
+  &__favorites-button {
     padding: 0.5rem 1rem;
-    border: none;
-    background-color: #007bff;
-    color: white;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #007bff;
+      color: white;
     }
   }
 
