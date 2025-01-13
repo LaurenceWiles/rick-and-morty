@@ -4,14 +4,10 @@
       :searchTerm="searchTerm"
       @update:searchTerm="(value) => $emit('update:searchTerm', value)"
     />
-    <div class="action-bar__sort">
-      <select>
-        <option value="">Sort By</option>
-        <option value="name">Name</option>
-        <option value="status">Status</option>
-        <option value="gender">Gender</option>
-      </select>
-    </div>
+    <SortControls
+      :sortOption="sortOption"
+      @update:sortOption="(value) => $emit('update:sortOption', value)"
+    />
     <div class="action-bar__favorites">
       <button>View Favorites</button>
     </div>
@@ -20,9 +16,10 @@
 
 <script setup>
 import SearchBar from "./SearchBar.vue";
+import SortControls from "./SortControls.vue";
 
-defineProps(["searchTerm"]);
-defineEmits(["update:searchTerm"]);
+defineProps(["searchTerm", "sortOption"]);
+defineEmits(["update:searchTerm", "update:sortOption"]);
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Rick and Morty</h1>
-    <ActionBar v-model:searchTerm="searchTerm" />
+    <ActionBar
+      v-model:searchTerm="searchTerm"
+      v-model:sortOption="sortOption"
+    />
     <p v-if="loading">Loading...</p>
     <p v-if="error" class="error">{{ error }}</p>
     <div class="cards-container">
@@ -33,6 +36,7 @@ const loading = ref(true);
 const error = ref(null);
 
 const searchTerm = ref("");
+const sortOption = ref("");
 
 const currentPage = ref(1);
 const itemsPerPage = 5;
@@ -55,6 +59,12 @@ const filteredCharacters = computed(() => {
   if (searchTerm.value) {
     result = result.filter((character) =>
       character.name.toLowerCase().includes(searchTerm.value.toLowerCase())
+    );
+  }
+
+  if (sortOption.value) {
+    result = [...result].sort((a, b) =>
+      a[sortOption.value].localeCompare(b[sortOption.value])
     );
   }
 
