@@ -1,8 +1,9 @@
 <template>
   <div class="action-bar">
-    <div class="action-bar__search">
-      <input type="text" placeholder="Search characters..." />
-    </div>
+    <SearchBar
+      :searchTerm="searchTerm"
+      @update:searchTerm="(value) => $emit('update:searchTerm', value)"
+    />
     <div class="action-bar__sort">
       <select>
         <option value="">Sort By</option>
@@ -17,9 +18,14 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import SearchBar from "./SearchBar.vue";
 
-<style lang="scss">
+defineProps(["searchTerm"]);
+defineEmits(["update:searchTerm"]);
+</script>
+
+<style lang="scss" scoped>
 .action-bar {
   display: flex;
   justify-content: space-between;

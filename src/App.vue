@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Rick and Morty</h1>
-    <ActionBar />
+    <ActionBar v-model:searchTerm="searchTerm" />
     <p v-if="loading">Loading...</p>
     <p v-if="error" class="error">{{ error }}</p>
     <div class="cards-container">
@@ -32,6 +32,8 @@ const characters = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
+const searchTerm = ref("");
+
 const currentPage = ref(1);
 const itemsPerPage = 5;
 
@@ -47,14 +49,26 @@ onMounted(async () => {
   }
 });
 
+const filteredCharacters = computed(() => {
+  let result = characters.value;
+
+  if (searchTerm.value) {
+    result = result.filter((character) =>
+      character.name.toLowerCase().includes(searchTerm.value.toLowerCase())
+    );
+  }
+
+  return result;
+});
+
 const paginatedCharacters = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return characters.value.slice(start, end);
+  return filteredCharacters.value.slice(start, end);
 });
 
 const totalPages = computed(() =>
-  Math.ceil(characters.value.length / itemsPerPage)
+  Math.ceil(filteredCharacters.value.length / itemsPerPage)
 );
 
 const changePage = (page) => {
