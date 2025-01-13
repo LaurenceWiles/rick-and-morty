@@ -32,8 +32,9 @@ defineEmits(["update:searchTerm", "update:sortOption", "open-favorites"]);
   align-items: center;
   padding: 1rem;
   background-color: #eaeaea;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
   gap: 1rem;
+  margin-bottom: 3rem;
 
   &__search input {
     padding: 0.5rem;
@@ -64,6 +65,7 @@ defineEmits(["update:searchTerm", "update:sortOption", "open-favorites"]);
   @media (max-width: 426px) {
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 1rem;
 
     &__search,
     &__sort,
